@@ -1,3 +1,5 @@
+import json
+from django.http import JsonResponse
 from rest_framework.decorators import api_view, authentication_classes, permission_classes
 from rest_framework.authentication import SessionAuthentication, TokenAuthentication
 from rest_framework.permissions import IsAuthenticated
@@ -58,7 +60,19 @@ def retrieve_images_by_tags(request):
 @authentication_classes([SessionAuthentication, TokenAuthentication])
 @permission_classes([IsAuthenticated])
 def createImage(request):
-    serializer = ImageModelSerializer(data=request.data)
+    tags = json.loads(request.data.get('tags', '[]'))
+    image = request.FILES.get('image')
+
+    if not image:
+        return JsonResponse({'error': 'No image provided'}, status=400)
+    
+    data = {
+        'tags': tags,
+        'image': image
+    }
+
+    serializer = ImageModelSerializer(data=data)
+    
     if serializer.is_valid():
         image_object = serializer.save()
         return Response(ImageModelSerializer(image_object).data, status=status.HTTP_201_CREATED)
