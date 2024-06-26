@@ -7,3 +7,4 @@ django-cloudinary-storage
 psycopg2-binary
 pandas
 pillow
+dj-database-url
