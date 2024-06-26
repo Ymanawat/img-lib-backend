@@ -150,6 +150,34 @@ Authorization: Token your_token_here
 }
 ```
 
+### 4. Upload Images with Tags
+
+**Endpoint:** `POST /images/upload`
+
+**Description:** Upload images with tags.
+
+**Request:**
+```
+POST http://127.0.0.1:8000/images/upload
+Authorization: token your_token_here
+
+{
+  "tags": ["tag1", "tag2"]
+  "image" : image
+}
+```
+
+**Response:**
+```json
+ {
+    "id": 1,
+    "unique_id" : "asdfwegwg2",
+    "image": "http://example.com/image1.jpg",
+    "image_url": "http://example.com/image1.jpg",
+    "tags": ["tag1", "tag2"]
+}
+```
+
 ### 4. Retrieve Images by Tags
 
 **Endpoint:** `GET /images/retrieve`
@@ -176,7 +204,7 @@ Authorization: token your_token_here
   "images": [
     {
       "id": 1,
-      "unique_id" : 'asdfwegwg2',
+      "unique_id" : "asdfwegwg2",
       "image": "http://example.com/image1.jpg",
       "image_url": "http://example.com/image1.jpg",
       "tags": ["tag1", "tag2"]
