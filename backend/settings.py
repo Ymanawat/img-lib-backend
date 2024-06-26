@@ -35,10 +35,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = os.environ.get('SECRET_KEY')
 
-ALLOWED_HOSTS = [
-    "dpg-cptcsdd6l47c73edikig-a.oregon-postgres.render.com",
-    "https://image-gallery-frontend-xi.vercel.app/",
-]
+ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS').split(',')
 
 # CORS_ALLOW_ALL_ORIGINS = True
 
